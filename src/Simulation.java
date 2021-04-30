@@ -6,6 +6,7 @@ public final class Simulation {
 
 	private static volatile ExecutorService exec;
 	private static volatile Channel standardIOChannel;
+	private static volatile Actor squareTop;
 
 	public static ExecutorService getExec() {
 		return exec;
@@ -16,12 +17,7 @@ public final class Simulation {
 	}
 
 	public static void start() {
-		final Actor sq = Factory.createActor("square");
-		standardIOChannel = Factory.createChannel("stream");
-		sq.connectIn(standardIOChannel, 0);
-		//sq.connectOut(standardIOChannel, 0);
-
-		exec.execute(sq);
+		exec.execute(squareTop);
 	}
 
 	public static void main(String[] args) {
@@ -34,6 +30,9 @@ public final class Simulation {
 			throw new IllegalArgumentException("Need t > 0");
 		}
 		exec = Executors.newFixedThreadPool(t);
+		squareTop = Factory.createActor("square");
+		standardIOChannel = Factory.createChannel("stream");
+		squareTop.connectIn(standardIOChannel, 0);
 		start();
 	}
 }

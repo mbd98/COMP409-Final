@@ -45,15 +45,15 @@ public class SquareActor implements Actor {
 				.next().source("in'", 1).sink("inSwitch", 1)
 				.next().source("==1", 0).sink("==1'", 0)
 				.next().source("==1'", 0).sink("inSwitch", 0)
-				.next().source("inSwitch", 1).sink("merge", 2)
+				.next().source("inSwitch", 0).sink("merge", 1)
 				.next().source("==1'", 1).sink("merge", 0)
-				.next().source("inSwitch", 0).sink("switch0'", 0)
+				.next().source("inSwitch", 1).sink("switch0'", 0)
 				.next().source("switch0'", 0).sink("dm1", 0)
 				.next().source("switch0'", 1).sink("dec", 0)
 				.next().source("dec", 0).sink("square(n-1)", 0)
 				.next().source("dm1", 0).sink("preresult", 0)
 				.next().source("square(n-1)", 0).sink("preresult", 1)
-				.next().source("preresult", 0).sink("merge", 1)
+				.next().source("preresult", 0).sink("merge", 2)
 				.next().source("merge", 0).sink("merge'", 0);
 
 		for (Actor a : actorMap.values()) {

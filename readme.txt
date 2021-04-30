@@ -1,5 +1,5 @@
 This program takes a series of natural numbers (excl. 0) separated by newlines,
-and returns "1\t2\t...\t(n^2)\n" to standard in - reusable!
+and returns "1\n4\n...\n(n^2)\n" to standard in - reusable!
 Timings for the input tokens are output to standard error.
 
 Threads are managed by a fixed thread pool executor, using t threads.
@@ -21,3 +21,6 @@ Quite simply, SquareActor will spawn another SquareActor that will take n-1 as i
 
 Unfortunately, I was unable to get the program to exit once all input tokens were processed,
 so a helping hand will be needed!
+
+IMPORTANT NOTE: Please read the channel identifiers on the flow chart to correspond to the boolean values
+1=true and 0=false (the code uses the requested specification in the assignment instructions)

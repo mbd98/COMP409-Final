@@ -1,5 +1,5 @@
 public class SwitchActor implements Actor {
-	private volatile Channel select, in, out0, out1;
+	private volatile Channel select, in, falseOut, trueOut;
 
 	@Override
 	public void connectIn(Channel c, int i) {
@@ -13,8 +13,8 @@ public class SwitchActor implements Actor {
 	@Override
 	public void connectOut(Channel c, int i) {
 		switch (i) {
-			case 0 -> out0 = c;
-			case 1 -> out1 = c;
+			case 0 -> trueOut = c;
+			case 1 -> falseOut = c;
 			default -> throw new IllegalArgumentException();
 		}
 	}
@@ -23,9 +23,9 @@ public class SwitchActor implements Actor {
 	public void run() {
 		in.consume(t -> select.consume(s -> {
 			if (s == 0) {
-				out0.set(t);
+				falseOut.set(t);
 			} else {
-				out1.set(t);
+				trueOut.set(t);
 			}
 			Simulation.getExec().execute(SwitchActor.this);
 		}));

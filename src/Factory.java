@@ -53,6 +53,14 @@ public final class Factory {
 	}
 
 	/**
+	 * Creates a new (default type) channel.
+	 * @return The new channel
+	 */
+	public static Channel createChannel() {
+		return new QueueChannel();
+	}
+
+	/**
 	 * Creates a new actor of the given type.
 	 * @param type The actor type
 	 * @return The new actor
@@ -70,6 +78,10 @@ public final class Factory {
 			case "dec" -> new IncrementActor(-1);
 			case "dm1" -> new DoubleMinusOneActor();
 			case "square" -> new SquareActor();
+			case "input" -> new InputActor();
+			case "output" -> new OutputActor();
+			case "cdr" -> new CdrActor();
+			case "<" -> new LessThanActor();
 			default -> throw new IllegalArgumentException();
 		};
 	}

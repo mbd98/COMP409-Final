@@ -12,9 +12,8 @@ public class StreamChannel implements Channel {
 	public void set(int token) {
 		final long stop = System.currentTimeMillis();
 		final int timedToken = (int) Math.sqrt(token); // Shhhh... this is so we know it's done!
-		System.out.printf("%d\t", token);
+		System.out.println(token);
 		if (hasMainToken && mainToken == timedToken) {
-			System.out.println();
 			System.err.printf("\ttime for token %d: %dms\n", timedToken, stop - startTime);
 			hasMainToken = false;
 		}

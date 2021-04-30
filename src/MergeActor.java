@@ -1,12 +1,12 @@
 public class MergeActor implements Actor {
-	private volatile Channel select, in0, in1, out;
+	private volatile Channel select, falseIn, trueIn, out;
 
 	@Override
 	public void connectIn(Channel c, int i) {
 		switch (i) {
 			case 0 -> select = c;
-			case 1 -> in0 = c;
-			case 2 -> in1 = c;
+			case 1 -> trueIn = c;
+			case 2 -> falseIn = c;
 			default -> throw new IllegalArgumentException();
 		}
 	}
@@ -23,12 +23,12 @@ public class MergeActor implements Actor {
 	public void run() {
 		select.consume(s -> {
 			if (s == 0) {
-				in0.consume(t -> {
+				falseIn.consume(t -> {
 					out.set(t);
 					Simulation.getExec().execute(MergeActor.this);
 				});
 			} else {
-				in1.consume(t -> {
+				trueIn.consume(t -> {
 					out.set(t);
 					Simulation.getExec().execute(MergeActor.this);
 				});
