@@ -18,3 +18,6 @@ Yes, it's not a "pure" actor but the functionality is pretty much identical.
 
 As seen from the flow chart PDF, we have a recursive definition for n^2.
 Quite simply, SquareActor will spawn another SquareActor that will take n-1 as its token.
+
+Unfortunately, I was unable to get the program to exit once all input tokens were processed,
+so a helping hand will be needed!
