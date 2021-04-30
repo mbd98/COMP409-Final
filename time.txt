@@ -1,1 +1,0 @@
-	time for token 100: 88ms

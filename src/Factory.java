@@ -39,8 +39,7 @@ public final class Factory {
 	public static Channel createChannel(String type) {
 		return switch (type) {
 			case "queue" -> new QueueChannel();
-			case "stream" -> new StreamChannel(false);
-			case "debug" -> new StreamChannel(true);
+			case "stream" -> new StreamChannel();
 			default -> throw new IllegalArgumentException();
 		};
 	}
