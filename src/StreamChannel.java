@@ -11,12 +11,13 @@ public class StreamChannel implements Channel {
 	@Override
 	public void set(int token) {
 		final long stop = System.currentTimeMillis();
-		final int timedToken = (int) Math.sqrt(token);
+		final int timedToken = (int) Math.sqrt(token); // Shhhh... this is so we know it's done!
+		System.out.printf("%d\t", token);
 		if (hasMainToken && mainToken == timedToken) {
+			System.out.println();
 			System.err.printf("\ttime for token %d: %dms\n", timedToken, stop - startTime);
 			hasMainToken = false;
 		}
-		System.out.println(token);
 	}
 
 	@Override

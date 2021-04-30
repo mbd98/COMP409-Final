@@ -4,6 +4,9 @@ import java.util.Objects;
 public final class Factory {
 	private Factory() {}
 
+	/**
+	 * Helper class for connecting channels.
+	 */
 	public static final class ChannelBuilder {
 		private volatile Actor source = null, sink = null;
 		private volatile Channel c = createChannel("queue");
@@ -36,6 +39,11 @@ public final class Factory {
 		}
 	}
 
+	/**
+	 * Creates a new channel of the given type.
+	 * @param type The channel type (one of "queue" or "stream")
+	 * @return The new channel
+	 */
 	public static Channel createChannel(String type) {
 		return switch (type) {
 			case "queue" -> new QueueChannel();
@@ -44,6 +52,11 @@ public final class Factory {
 		};
 	}
 
+	/**
+	 * Creates a new actor of the given type.
+	 * @param type The actor type
+	 * @return The new actor
+	 */
 	public static Actor createActor(String type) {
 		return switch (type) {
 			case "add" -> new AddActor();
