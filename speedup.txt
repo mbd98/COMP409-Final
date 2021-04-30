@@ -1,0 +1,9 @@
+Given n = 100:
+t = 1: 95ms 84ms 113ms 93ms 74ms, avg = 91.8ms
+t = 2: 78ms 83ms 82ms 89ms 83ms, avg = 83ms
+t = 4: 66ms 65ms 61ms 68ms 71ms, avg = 66.2ms
+t = 8: 75ms 76ms 71ms 83ms 59ms, avg = 72.8ms
+t = 16: 53ms 62ms 76ms 49ms 86ms, avg = 65.2ms
+t = 32: 58ms 48ms 52ms 74ms 67ms, avg = 59.8ms
+t = 64: 59ms 81ms 47ms 93ms 82ms, avg = 72.4ms
+t = 128: 53ms 85ms 73ms 66ms 67ms, avg = 68.8ms

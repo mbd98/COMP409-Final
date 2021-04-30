@@ -19,7 +19,6 @@ public final class Simulation {
 		final Actor sq = Factory.createActor("square");
 		standardIOChannel = Factory.createChannel("stream");
 		sq.connectIn(standardIOChannel, 0);
-		//sq.connectOut(io, 0);
 
 		exec.execute(sq);
 	}

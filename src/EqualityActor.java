@@ -20,11 +20,9 @@ public class EqualityActor implements Actor {
 
 	@Override
 	public void run() {
-		in0.consume(t0 -> {
-			in1.consume(t1 -> {
-				out.set(t0 == t1 ? 1 : 0);
-				Simulation.getExec().execute(EqualityActor.this);
-			});
-		});
+		in0.consume(t0 -> in1.consume(t1 -> {
+			out.set(t0 == t1 ? 1 : 0);
+			Simulation.getExec().execute(EqualityActor.this);
+		}));
 	}
 }
