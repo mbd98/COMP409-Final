@@ -21,8 +21,10 @@ public class ForkActor implements Actor {
 	@Override
 	public void run() {
 		in.consume(t -> {
-			out0.set(t);
-			out1.set(t);
+			if (out0 != null)
+				out0.set(t);
+			if (out1 != null)
+				out1.set(t);
 			Simulation.getExec().execute(ForkActor.this);
 		});
 	}

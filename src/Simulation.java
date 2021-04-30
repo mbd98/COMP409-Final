@@ -5,16 +5,21 @@ public final class Simulation {
 	private Simulation() {}
 
 	private static volatile ExecutorService exec;
+	private static volatile Channel standardIOChannel;
 
 	public static ExecutorService getExec() {
 		return exec;
 	}
 
+	public static Channel getStandardIOChannel() {
+		return standardIOChannel;
+	}
+
 	public static void start() {
 		final Actor sq = Factory.createActor("square");
-		final Channel io = Factory.createChannel("stream");
-		sq.connectIn(io, 0);
-		sq.connectOut(io, 0);
+		standardIOChannel = Factory.createChannel("stream");
+		sq.connectIn(standardIOChannel, 0);
+		//sq.connectOut(io, 0);
 
 		exec.execute(sq);
 	}

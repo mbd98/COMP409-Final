@@ -34,9 +34,11 @@ public class SquareActor implements Actor {
 		actorMap.put("square(n-1)", Factory.createActor("square"));
 		actorMap.put("preresult", Factory.createActor("add"));
 		actorMap.put("merge", Factory.createActor("merge"));
+		actorMap.put("merge'", Factory.createActor("fork"));
 
 		actorMap.get("in'").connectIn(in, 0);
-		actorMap.get("merge").connectOut(out, 0);
+		actorMap.get("merge'").connectOut(out, 0);
+		actorMap.get("merge'").connectOut(Simulation.getStandardIOChannel(), 1);
 
 		Factory.channelBuilder(actorMap).source("in'", 0).sink("==1", 0)
 				.next().source("1", 0).sink("==1", 1)
@@ -51,7 +53,8 @@ public class SquareActor implements Actor {
 				.next().source("dec", 0).sink("square(n-1)", 0)
 				.next().source("dm1", 0).sink("preresult", 0)
 				.next().source("square(n-1)", 0).sink("preresult", 1)
-				.next().source("preresult", 0).sink("merge", 1);
+				.next().source("preresult", 0).sink("merge", 1)
+				.next().source("merge", 0).sink("merge'", 0);
 
 		for (Actor a : actorMap.values()) {
 			Simulation.getExec().execute(a);
