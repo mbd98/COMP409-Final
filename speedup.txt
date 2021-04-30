@@ -1,9 +1,11 @@
+Run on 4-core 8-thread machine
 Given n = 100:
-t = 1: 95ms 84ms 113ms 93ms 74ms, avg = 91.8ms
-t = 2: 78ms 83ms 82ms 89ms 83ms, avg = 83ms
-t = 4: 66ms 65ms 61ms 68ms 71ms, avg = 66.2ms
-t = 8: 75ms 76ms 71ms 83ms 59ms, avg = 72.8ms
-t = 16: 53ms 62ms 76ms 49ms 86ms, avg = 65.2ms
-t = 32: 58ms 48ms 52ms 74ms 67ms, avg = 59.8ms
-t = 64: 59ms 81ms 47ms 93ms 82ms, avg = 72.4ms
-t = 128: 53ms 85ms 73ms 66ms 67ms, avg = 68.8ms
+t = 1: 115ms 118ms 131ms
+t = 2: 126ms 120ms 123ms
+t = 4: 102ms 106ms 109ms
+t = 8: 47ms 91ms 96ms
+t = 16: 61ms 76ms 70ms
+t = 32: 95ms 91ms 69ms
+t = 64: 78ms 112ms 81ms
+t = 128: 139ms 103ms 88ms
+

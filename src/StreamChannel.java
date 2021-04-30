@@ -1,31 +1,44 @@
-import java.util.Map;
 import java.util.Scanner;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.IntConsumer;
 
 public class StreamChannel implements Channel {
 	private final Scanner scanner = new Scanner(System.in);
 	private final Object scannerLock = new Object();
-	private final Map<Integer, Long> tokenTimes = new ConcurrentHashMap<>();
+	private final boolean debug;
+	private volatile long startTime;
+	private volatile int mainToken;
+	private volatile boolean hasMainToken = false;
+
+	public StreamChannel(boolean debug) {
+		this.debug = debug;
+	}
 
 	@Override
 	public void set(int token) {
 		final long stop = System.currentTimeMillis();
-		if (tokenTimes.containsKey(token))
-			System.err.printf("\ttime for token %d: %dms\n", token, stop - tokenTimes.remove(token));
+		final int timedToken = (int) Math.sqrt(token);
+		if (debug && hasMainToken && mainToken == timedToken) {
+			System.err.printf("\ttime for token %d: %dms\n", timedToken, stop - startTime);
+			hasMainToken = false;
+		}
 		System.out.println(token);
 	}
 
 	@Override
 	public void consume(IntConsumer consumer) {
 		Integer value = null;
+		while (hasMainToken) {}
 		synchronized (scannerLock) {
 			if (scanner.hasNextLine()) {
 				value = Integer.parseInt(scanner.nextLine());
 			}
 		}
 		if (value != null) {
-			tokenTimes.put(value, System.currentTimeMillis());
+			if (debug) {
+				startTime = System.currentTimeMillis();
+			}
+			mainToken = value;
+			hasMainToken = true;
 			consumer.accept(value);
 		}
 	}

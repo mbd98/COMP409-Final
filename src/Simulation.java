@@ -4,6 +4,7 @@ import java.util.concurrent.Executors;
 public final class Simulation {
 	private Simulation() {}
 
+	private static volatile int t;
 	private static volatile ExecutorService exec;
 	private static volatile Channel standardIOChannel;
 
@@ -17,14 +18,14 @@ public final class Simulation {
 
 	public static void start() {
 		final Actor sq = Factory.createActor("square");
-		standardIOChannel = Factory.createChannel("stream");
+		standardIOChannel = Factory.createChannel("debug");
 		sq.connectIn(standardIOChannel, 0);
+		//sq.connectOut(standardIOChannel, 0);
 
 		exec.execute(sq);
 	}
 
 	public static void main(String[] args) {
-		final int t;
 		if (args.length != 1) {
 			throw new IllegalArgumentException("Need thread count");
 		}
