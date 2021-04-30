@@ -48,6 +48,7 @@ public final class Factory {
 		return switch (type) {
 			case "queue" -> new QueueChannel();
 			case "stream" -> new StreamChannel();
+			case "stdio" -> new StandardIOChannel();
 			default -> throw new IllegalArgumentException();
 		};
 	}

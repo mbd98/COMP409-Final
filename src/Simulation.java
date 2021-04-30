@@ -31,7 +31,7 @@ public final class Simulation {
 		}
 		exec = Executors.newFixedThreadPool(t);
 		squareTop = Factory.createActor("square");
-		standardIOChannel = Factory.createChannel("stream");
+		standardIOChannel = Factory.createChannel("stdio");
 		squareTop.connectIn(standardIOChannel, 0);
 		start();
 	}

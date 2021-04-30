@@ -1,5 +1,5 @@
 public class OutputActor implements Actor {
-	private final StreamChannel out = (StreamChannel) Simulation.getStandardIOChannel();
+	private final Channel out = Factory.createChannel("stream");
 	private volatile Channel in;
 
 	@Override
