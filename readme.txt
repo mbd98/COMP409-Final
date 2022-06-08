@@ -1,3 +1,11 @@
+McGill COMP 409 (Concurrent Programming) Final Project.
+
+Received 100% for my submission.
+
+If you have a similar assignment, don't copy, for hopefully obvious reasons...
+
+-----
+
 This program takes a series of natural numbers (excl. 0) separated by newlines,
 and returns "1\n4\n...\n(n^2)\n" to standard in - reusable!
 Timings for the input tokens are output to standard error.
